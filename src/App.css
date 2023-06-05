@@ -1,38 +1,39 @@
 .App {
-  text-align: center;
+    text-align: center;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.todo-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+    .todo-container input {
+        padding: 5px;
+        margin-right: 5px;
+    }
+
+    .todo-container button {
+        padding: 5px 10px;
+    }
+
+.todo-list {
+    list-style-type: none;
+    padding-left: 0;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+    .todo-list li {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 5px;
+    }
+
+.todo-text.completed {
+    text-decoration: line-through;
 }
 
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.delete-icon {
+    cursor: pointer;
 }
