@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FiTrash } from 'react-icons/fi';
 import { v4 as uuidv4 } from 'uuid';
 import './App.css';
@@ -15,6 +15,20 @@ type Todo = {
 };
 
 const App: React.FC = () => {
+
+    useEffect(() => {
+        const storedTodos = localStorage.getItem('todos');
+        console.log(storedTodos);
+        if (storedTodos) {
+            setTodos(JSON.parse(storedTodos))
+        }
+    }, [])
+
+    useEffect(() => {
+        localStorage.setItem('todos', JSON.stringify(todos))
+    }, [todos])
+
+
     const [todos, setTodos] = useState<Todo[]>([]);
   const [newTodo, setNewTodo] = useState('');
 
