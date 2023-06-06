@@ -12,6 +12,7 @@ type Todo = {
     id: string;
     text: string;
     completed: boolean;
+    priority: number;
 };
 
 const App: React.FC = () => {
@@ -35,14 +36,18 @@ const App: React.FC = () => {
     }, [todos]);
 
 
-    const addTodo = () => {
+    const addTodo = (priority: number) => {
         if (newTodo.trim() === '') return;
+
+        const maxPriority = todos.length > 0 ? Math.max(...todos.map(todo => todo.priority)) : -1;
+        const nextPriority = maxPriority + 1;
 
 
         const todo: Todo = {
             id: uuidv4(),
             text: newTodo,
             completed: false,
+            priority: nextPriority,
         };
 
         setTodos((prevTodos) => [...prevTodos, todo]);
@@ -69,7 +74,7 @@ const App: React.FC = () => {
 
     const handleFormSubmit = (e: React.FormEvent) => {
         e.preventDefault(); // Prevents the default form submission behaviour
-        addTodo(); // Call the addTodo function to add the new todo
+        addTodo(1); // Call the addTodo function to add the new todo
     }
   
 
@@ -88,7 +93,7 @@ const App: React.FC = () => {
                 </div>
             </form>
             <ul className="todo-list">
-                {todos.map((todo) => (
+                {todos.sort((a, b) => a.priority - b.priority).map((todo) => (
                     <li key={todo.id}>
                         <span
                             className={`todo-text ${todo.completed ? 'completed' : ''}`}
