@@ -67,21 +67,26 @@ const App: React.FC = () => {
         )
     }
 
-   
+    const handleFormSubmit = (e: React.FormEvent) => {
+        e.preventDefault(); // Prevents the default form submission behaviour
+        addTodo(); // Call the addTodo function to add the new todo
+    }
   
 
     return (
         <div className="App">
             <h1>Todo App</h1>
-            <div className="todo-container">
-                <input
-                    type="text"
-                    placeholder="Add a new todo"
-                    value={newTodo}
-                    onChange={(e) => setNewTodo(e.target.value)}
-                />
-                <button onClick={addTodo}>Add</button>
-            </div>
+            <form onSubmit={handleFormSubmit}>
+                <div className="todo-container">
+                    <input
+                        type="text"
+                        placeholder="Add a new todo"
+                        value={newTodo}
+                        onChange={(e) => setNewTodo(e.target.value)}
+                    />
+                    <button type="submit">Add</button>
+                </div>
+            </form>
             <ul className="todo-list">
                 {todos.map((todo) => (
                     <li key={todo.id}>
