@@ -149,7 +149,7 @@ const App: React.FC = () => {
                         onDragOver={handleDragOver}
                         onDrop={(e) => handleDrop(e, todo.id)}
                     >
-                        
+                        {editedTodo && editedTodo.id === todo.id ? (
                             <input
                                 type="text"
                                 value={editedTodo.text}
@@ -158,6 +158,7 @@ const App: React.FC = () => {
                                         ...editedTodo,
                                         text: e.target.value,
                                     })
+                                }
                                 onBlur={() => handleTodoUpdate(editedTodo.id, editedTodo.text)}
                             />
 
