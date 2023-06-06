@@ -3,11 +3,6 @@ import { FiTrash } from 'react-icons/fi';
 import { v4 as uuidv4 } from 'uuid';
 import './App.css';
 
-
-//let myuuid = uuidv4();
-
-
-
 type Todo = {
     id: string;
     text: string;
@@ -20,6 +15,7 @@ const App: React.FC = () => {
 
     const [todos, setTodos] = useState<Todo[]>([]);
     const [newTodo, setNewTodo] = useState('');
+    const [editedTodo, setEditedTodo] = useState<Todo | null>(null);
 
     useEffect(() => {
         const storedTodos = localStorage.getItem('todo-list');
@@ -77,6 +73,32 @@ const App: React.FC = () => {
         addTodo(1); // Call the addTodo function to add the new todo
     };
 
+    const handleTodoEdit = (id: string, text: string) => {
+        setEditedTodo({
+            id: id,
+            text: text,
+            completed: false,
+            priority: 0,
+        });
+
+    };
+
+    const handleTodoUpdate = (id: string, newText: string) => {
+        setTodos(
+            todos.map((todo) => {
+                if (todo.id === id) {
+                    return {
+                        ...todo,
+                        text: newText,
+                    }
+                }
+                return todo;
+            })
+        );
+        setEditedTodo(null);
+
+    };
+
     const handleDragStart = (e: React.DragEvent<HTMLLIElement>, id: string) => {
         e.dataTransfer.setData('text/plain', id);
     };
@@ -127,14 +149,32 @@ const App: React.FC = () => {
                         onDragOver={handleDragOver}
                         onDrop={(e) => handleDrop(e, todo.id)}
                     >
-                        <span
-                            className={`todo-text ${todo.completed ? 'completed' : ''}`}
-                            onClick={() => toggleTodoCompletion(todo.id)}   
+                        {editedTodo && editedTodo.id === todo.id ? (
+                            <input
+                                type="text"
+                                value={editedTodo.text}
+                                onChange={(e) =>
+                                    setEditedTodo({
+                                        ...editedTodo,
+                                        text: e.target.value,
+                                    })
+                                }
+                                onBlur={() => handleTodoUpdate(editedTodo.id, editedTodo.text)}
+                            />
 
+                        ) : (
+                        <>
+                         <span
+                            className={`todo-text ${todo.completed ? 'completed' : ''}`}
+                            onClick={() => toggleTodoCompletion(todo.id)}
+                            onDoubleClick={() => handleTodoEdit(todo.id, todo.text)}
                         >
                             {todo.text}
-                        </span>
-                        <FiTrash className="delete-icon" onClick={() => deleteTodo(todo.id)} />
+                            </span>
+                        
+                          <FiTrash className="delete-icon" onClick={() => deleteTodo(todo.id)} />
+                        </>
+                        )}
                     </li>       
                 ))}
             </ul>
