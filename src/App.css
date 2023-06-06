@@ -1,6 +1,6 @@
 .App {
     text-align: center;
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 .todo-container {
@@ -38,13 +38,13 @@
 
 .todo-list li:hover {
     /* Add styles to highlight the list items on hover */
-    background-color: #e9e9e9;
+    background-color: lightblue;
     border: 1px grey dashed;
 }
 
     .todo-list li.drag-over {
         /* Add styles to highlight the drop target */
-        background-color: #c8c8c8;
+        background-color: deepskyblue;
         border: 3px blue dotted;
     }
 
