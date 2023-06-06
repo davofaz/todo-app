@@ -75,8 +75,35 @@ const App: React.FC = () => {
     const handleFormSubmit = (e: React.FormEvent) => {
         e.preventDefault(); // Prevents the default form submission behaviour
         addTodo(1); // Call the addTodo function to add the new todo
+    };
+
+    const handleDragStart = (e: React.DragEvent<HTMLLIElement>, id: string) => {
+        e.dataTransfer.setData('text/plain', id);
+    };
+
+    const handleDragOver = (e: React.DragEvent<HTMLLIElement>) => {
+        e.preventDefault();
+    };
+
+    const handleDrop = (e: React.DragEvent<HTMLLIElement>, targetId: string) => {
+        e.preventDefault();
+
+        const draggedId = e.dataTransfer.getData('text/plain');
+
+        // Find the index of the dragged todo
+        const draggedIndex = todos.findIndex((todo) => todo.id === draggedId);
+
+        // Find the index of the target todo
+        const targetIndex = todos.findIndex((todo) => todo.id === targetId);
+
+        // Swap the todos in the array
+        const updatedTodos = [...todos];
+        [updatedTodos[draggedIndex], updatedTodos[targetIndex]] = [updatedTodos[targetIndex], updatedTodos[draggedIndex],
+        ];
+
+        setTodos(updatedTodos);
+
     }
-  
 
     return (
         <div className="App">
@@ -93,8 +120,13 @@ const App: React.FC = () => {
                 </div>
             </form>
             <ul className="todo-list">
-                {todos.sort((a, b) => a.priority - b.priority).map((todo) => (
-                    <li key={todo.id}>
+                {todos.map((todo, index) => (
+                    <li key={todo.id}
+                        draggable
+                        onDragStart={(e) => handleDragStart(e, todo.id)}
+                        onDragOver={handleDragOver}
+                        onDrop={(e) => handleDrop(e, todo.id)}
+                    >
                         <span
                             className={`todo-text ${todo.completed ? 'completed' : ''}`}
                             onClick={() => toggleTodoCompletion(todo.id)}   
