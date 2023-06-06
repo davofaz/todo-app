@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 import './App.css';
 
 
-let myuuid = uuidv4();
+//let myuuid = uuidv4();
 
 
 
@@ -16,21 +16,24 @@ type Todo = {
 
 const App: React.FC = () => {
 
+
+    const [todos, setTodos] = useState<Todo[]>([]);
+    const [newTodo, setNewTodo] = useState('');
+
     useEffect(() => {
-        const storedTodos = localStorage.getItem('todos');
-        console.log(storedTodos);
+        const storedTodos = localStorage.getItem('todo-list');
+        //console.log(localStorage);
         if (storedTodos) {
             setTodos(JSON.parse(storedTodos))
         }
     }, [])
 
     useEffect(() => {
-        localStorage.setItem('todos', JSON.stringify(todos))
-    }, [todos])
+        if (todos.length > 0) {
+        localStorage.setItem('todo-list', JSON.stringify(todos))}
+        //console.log(localStorage);
+    }, [todos]);
 
-
-    const [todos, setTodos] = useState<Todo[]>([]);
-  const [newTodo, setNewTodo] = useState('');
 
     const addTodo = () => {
         if (newTodo.trim() === '') return;
@@ -42,7 +45,7 @@ const App: React.FC = () => {
             completed: false,
         };
 
-        setTodos([...todos, todo]);
+        setTodos((prevTodos) => [...prevTodos, todo]);
         setNewTodo('');
     }
 
@@ -56,13 +59,16 @@ const App: React.FC = () => {
                 if (todo.id === id) {
                     return {
                         ...todo,
-                        completed: !todo.completed
+                        completed: !todo.completed,
                     }
                 }
                 return todo
             })
         )
     }
+
+   
+  
 
     return (
         <div className="App">
