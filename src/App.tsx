@@ -129,19 +129,21 @@ const App: React.FC = () => {
 
     return (
         <div className="App">
-            <h1>My Tasks</h1>
-            <form onSubmit={handleFormSubmit}>
-                <div className="todo-container">
-                    <input
-                        type="text"
-                        placeholder="Add a new todo"
-                        value={newTodo}
-                        onChange={(e) => setNewTodo(e.target.value)}
-                        maxLength={112}
-                    />
-                    <button type="submit">Add</button>
-                </div>
-            </form>
+            <header className="App-header">
+                <h1>My Tasks</h1>
+                <form onSubmit={handleFormSubmit}>
+                    <div className="todo-container">
+                        <input
+                            type="text"
+                            placeholder="Add a new todo"
+                            value={newTodo}
+                            onChange={(e) => setNewTodo(e.target.value)}
+                            maxLength={112}
+                        />
+                        <button type="submit">Add</button>
+                    </div>
+                    </form>
+            </header>
             <ul className="todo-list">
                 {todos.map((todo, index) => (
                     <li

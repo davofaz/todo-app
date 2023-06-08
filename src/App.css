@@ -1,6 +1,19 @@
 .App {
     text-align: center;
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+}
+
+.App-header {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.60), rgba(0, 0, 0, 0.60)), url('./img/header-background-image.jpg');
+    background-size: cover;
+}
+
+.App-header h1 {
+    margin: 0;
+    padding:1.3em;
+    color: #fff;
+    font-weight:200;
+    letter-spacing:3px;
 }
 
 .todo-container {
