@@ -6,20 +6,28 @@
 .App-header {
     background-image: linear-gradient(rgba(0, 0, 0, 0.60), rgba(0, 0, 0, 0.60)), url('./img/header-background-image.jpg');
     background-size: cover;
+    border-bottom: 3px solid slateblue;
 }
 
 .App-header h1 {
     margin: 0;
-    padding:1.3em;
+    padding:2em;
     color: #fff;
     font-weight:200;
     letter-spacing:3px;
+    
+}
+
+.App-main {
+    padding: 2em;
 }
 
 .todo-container {
     display: flex;
     justify-content: center;
     margin-bottom: 10px;
+    padding-bottom:20px;
+  
 }
 
     .todo-container input {
@@ -33,7 +41,8 @@
 
 .todo-list {
     list-style-type: none;
-    padding-left: 0;
+    padding-left: 0; 
+    margin-top: 0;
 }
 
 .todo-list li {
@@ -42,28 +51,27 @@
     justify-content: space-between;
     /* Add padding, margin, and other styles for the list items */
     padding: 10px;
-    margin-bottom: 10px;    
-    border-radius: 4px;
+    margin-bottom: 10px; 
     cursor: move;
     transition: background-color 0.3s;
 }
 
 .todo-list li:hover {
     /* Add styles to highlight the list items on hover */
-    background-color: lightblue;
+    background-color: #dfdfdf;
     border: 1px grey dashed;
 }
 
     .todo-list li.drag-over {
         /* Add styles to highlight the drop target */
-        background-color: deepskyblue;
-        border: 3px blue dotted;
+        border: 10px black dotted;
     }
 
 .todo-text {
     flex-grow: 4;
     text-align: left;
     padding: 20px;
+    font-weight:300;
 }
 
 .todo-text.completed {
@@ -75,12 +83,12 @@
 }
 
 .todo-high-priority {
-    background-color: indianred;
+    background-color: slateblue;
 
 }
 
 .todo-low-priority {
-    background-color: #f4f4f4;
+    border-bottom: 3px solid lightgray;
 }
 
 
