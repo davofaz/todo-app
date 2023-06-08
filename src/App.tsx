@@ -129,7 +129,7 @@ const App: React.FC = () => {
 
     return (
         <div className="App">
-            <h1>Todo App</h1>
+            <h1>My Tasks</h1>
             <form onSubmit={handleFormSubmit}>
                 <div className="todo-container">
                     <input
