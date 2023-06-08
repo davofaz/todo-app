@@ -1,6 +1,7 @@
 {
   "name": "todo-app",
   "version": "0.1.0",
+  "homepage": "https://davofaz.github.io/todo-app/",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.5",
@@ -26,18 +27,11 @@
     "eject": "react-scripts eject"
   },
   "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "last two versions"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+    "production": [ ">0.2%", "not dead", "last 2 versions" ],
+    "development": [ "last 1 chrome version", "last 1 firefox version", "last 1 safari version" ]
   },
   "devDependencies": {
+    "browserslist": "^4.21.7",
     "jest-editor-support": "^31.0.1"
   }
 }
