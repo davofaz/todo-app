@@ -129,64 +129,69 @@ const App: React.FC = () => {
 
     return (
         <div className="App">
-            <h1>My Tasks</h1>
-            <form onSubmit={handleFormSubmit}>
-                <div className="todo-container">
-                    <input
-                        type="text"
-                        placeholder="Add a new todo"
-                        value={newTodo}
-                        onChange={(e) => setNewTodo(e.target.value)}
-                    />
-                    <button type="submit">Add</button>
-                </div>
-            </form>
-            <ul className="todo-list">
-                {todos.map((todo, index) => (
-                    <li
-                        key={todo.id}
-                        draggable
-                        onDragStart={(e) => handleDragStart(e, todo.id)}
-                        onDragOver={handleDragOver}
-                        onDrop={(e) => handleDrop(e, todo.id)}
-                        className={`${todo.priority ? 'todo-high-priority' : 'todo-low-priority' }`}
-                    >
-                        {editedTodo && editedTodo.id === todo.id ? (
-                            <input
-                                type="text"
-                                value={editedTodo.text}
-                                onChange={(e) =>
-                                    setEditedTodo({
-                                        ...editedTodo,
-                                        text: e.target.value,
-                                    })
-                                }
-                                onBlur={() => handleTodoUpdate(editedTodo.id, editedTodo.text)}
-                            />
-                        ) : (
-                            <>
-                                <span
-                                        className={`todo-text ${todo.priority ? 'white' : ''} ${todo.completed ? 'completed' : ''}`}
-                                    onClick={() => toggleTodoCompletion(todo.id)}
-                                    onDoubleClick={() => handleTodoEdit(todo.id, todo.text)}
-                                >
-                                    <p></p>{todo.text}
-                                </span>
-                                    <FiTrash
-                                        className={`delete-icon ${todo.priority ? 'white' : ''}`}
-                                    onClick={() => deleteTodo(todo.id)}
-                                />
+            <header className="App-header">
+                <h1>My Tasks</h1>
+                <form onSubmit={handleFormSubmit}>
+                    <div className="todo-container">
+                        <input
+                            type="text"
+                            placeholder="Add a new todo"
+                            value={newTodo}
+                            onChange={(e) => setNewTodo(e.target.value)}
+                            maxLength={112}
+                        />
+                        <button type="submit">Add</button>
+                    </div>
+                    </form>
+            </header>
+            <main className="App-main">
+                <ul className="todo-list">
+                    {todos.map((todo, index) => (
+                        <li
+                            key={todo.id}
+                            draggable
+                            onDragStart={(e) => handleDragStart(e, todo.id)}
+                            onDragOver={handleDragOver}
+                            onDrop={(e) => handleDrop(e, todo.id)}
+                            className={`${todo.priority ? 'todo-high-priority' : 'todo-low-priority' }`}
+                        >
+                            {editedTodo && editedTodo.id === todo.id ? (
                                 <input
-                                    type="checkbox"
-                                    className="todo-priority-checkbox"
-                                    checked={todo.priority}
-                                    onChange={() => handlePriorityToggle(todo.id)}
+                                    type="text"
+                                    value={editedTodo.text}
+                                    onChange={(e) =>
+                                        setEditedTodo({
+                                            ...editedTodo,
+                                            text: e.target.value,
+                                        })
+                                    }
+                                    onBlur={() => handleTodoUpdate(editedTodo.id, editedTodo.text)}
                                 />
-                            </>
-                        )}
-                    </li>
-                ))}
-            </ul>
+                            ) : (
+                                <>
+                                    <span
+                                            className={`todo-text ${todo.priority ? 'white' : ''} ${todo.completed ? 'completed' : ''}`}
+                                        onClick={() => toggleTodoCompletion(todo.id)}
+                                        onDoubleClick={() => handleTodoEdit(todo.id, todo.text)}
+                                    >
+                                        <p></p>{todo.text}
+                                    </span>
+                                        <FiTrash
+                                            className={`delete-icon ${todo.priority ? 'white' : ''}`}
+                                        onClick={() => deleteTodo(todo.id)}
+                                    />
+                                    <input
+                                        type="checkbox"
+                                        className="todo-priority-checkbox"
+                                        checked={todo.priority}
+                                        onChange={() => handlePriorityToggle(todo.id)}
+                                    />
+                                </>
+                            )}
+                        </li>
+                    ))}
+                </ul>
+            </main>
         </div>
     );
 };
