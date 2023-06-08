@@ -149,6 +149,7 @@ const App: React.FC = () => {
                         onDragStart={(e) => handleDragStart(e, todo.id)}
                         onDragOver={handleDragOver}
                         onDrop={(e) => handleDrop(e, todo.id)}
+                        className={`${todo.priority ? 'todo-high-priority' : 'todo-low-priority' }`}
                     >
                         {editedTodo && editedTodo.id === todo.id ? (
                             <input
@@ -165,19 +166,19 @@ const App: React.FC = () => {
                         ) : (
                             <>
                                 <span
-                                    className={`todo-text ${todo.completed ? 'completed' : ''
-                                        } ${todo.priority ? 'high-priority' : ''}`}
+                                        className={`todo-text ${todo.priority ? 'white' : ''} ${todo.completed ? 'completed' : ''}`}
                                     onClick={() => toggleTodoCompletion(todo.id)}
                                     onDoubleClick={() => handleTodoEdit(todo.id, todo.text)}
                                 >
-                                    {todo.text}
+                                    <p></p>{todo.text}
                                 </span>
-                                <FiTrash
-                                    className="delete-icon"
+                                    <FiTrash
+                                        className={`delete-icon ${todo.priority ? 'white' : ''}`}
                                     onClick={() => deleteTodo(todo.id)}
                                 />
                                 <input
                                     type="checkbox"
+                                    className="todo-priority-checkbox"
                                     checked={todo.priority}
                                     onChange={() => handlePriorityToggle(todo.id)}
                                 />
