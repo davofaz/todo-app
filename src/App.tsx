@@ -137,6 +137,7 @@ const App: React.FC = () => {
                         placeholder="Add a new todo"
                         value={newTodo}
                         onChange={(e) => setNewTodo(e.target.value)}
+                        maxLength={112}
                     />
                     <button type="submit">Add</button>
                 </div>
