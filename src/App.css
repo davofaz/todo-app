@@ -29,8 +29,7 @@
     justify-content: space-between;
     /* Add padding, margin, and other styles for the list items */
     padding: 10px;
-    margin-bottom: 10px;
-    background-color: #f4f4f4;
+    margin-bottom: 10px;    
     border-radius: 4px;
     cursor: move;
     transition: background-color 0.3s;
@@ -48,10 +47,35 @@
         border: 3px blue dotted;
     }
 
+.todo-text {
+    flex-grow: 4;
+    text-align: left;
+    padding: 20px;
+}
+
 .todo-text.completed {
     text-decoration: line-through;
 }
 
+.todo-priority-checkbox {
+    margin: 20px;
+}
+
+.todo-high-priority {
+    background-color: indianred;
+
+}
+
+.todo-low-priority {
+    background-color: #f4f4f4;
+}
+
+
 .delete-icon {
     cursor: pointer;
+    padding: 20px;
+}
+
+.white {
+    color: #fff;
 }

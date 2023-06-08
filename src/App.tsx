@@ -7,52 +7,44 @@ type Todo = {
     id: string;
     text: string;
     completed: boolean;
-    priority: number;
+    priority: boolean;
 };
 
 const App: React.FC = () => {
-
-
     const [todos, setTodos] = useState<Todo[]>([]);
     const [newTodo, setNewTodo] = useState('');
     const [editedTodo, setEditedTodo] = useState<Todo | null>(null);
 
     useEffect(() => {
         const storedTodos = localStorage.getItem('todo-list');
-        //console.log(localStorage);
         if (storedTodos) {
-            setTodos(JSON.parse(storedTodos))
+            setTodos(JSON.parse(storedTodos));
         }
-    }, [])
+    }, []);
 
     useEffect(() => {
         if (todos.length > 0) {
-        localStorage.setItem('todo-list', JSON.stringify(todos))}
-        //console.log(localStorage);
+            localStorage.setItem('todo-list', JSON.stringify(todos));
+        }
     }, [todos]);
 
-
-    const addTodo = (priority: number) => {
+    const addTodo = () => {
         if (newTodo.trim() === '') return;
-
-        const maxPriority = todos.length > 0 ? Math.max(...todos.map(todo => todo.priority)) : -1;
-        const nextPriority = maxPriority + 1;
-
 
         const todo: Todo = {
             id: uuidv4(),
             text: newTodo,
             completed: false,
-            priority: nextPriority,
+            priority: false,
         };
 
         setTodos((prevTodos) => [...prevTodos, todo]);
         setNewTodo('');
-    }
+    };
 
     const deleteTodo = (id: string) => {
-        setTodos(todos.filter((todo) => todo.id !== id))
-    }
+        setTodos(todos.filter((todo) => todo.id !== id));
+    };
 
     const toggleTodoCompletion = (id: string) => {
         setTodos(
@@ -61,16 +53,16 @@ const App: React.FC = () => {
                     return {
                         ...todo,
                         completed: !todo.completed,
-                    }
+                    };
                 }
-                return todo
+                return todo;
             })
-        )
-    }
+        );
+    };
 
     const handleFormSubmit = (e: React.FormEvent) => {
-        e.preventDefault(); // Prevents the default form submission behaviour
-        addTodo(1); // Call the addTodo function to add the new todo
+        e.preventDefault();
+        addTodo();
     };
 
     const handleTodoEdit = (id: string, text: string) => {
@@ -78,9 +70,8 @@ const App: React.FC = () => {
             id: id,
             text: text,
             completed: false,
-            priority: 0,
+            priority: false,
         });
-
     };
 
     const handleTodoUpdate = (id: string, newText: string) => {
@@ -90,13 +81,12 @@ const App: React.FC = () => {
                     return {
                         ...todo,
                         text: newText,
-                    }
+                    };
                 }
                 return todo;
             })
         );
         setEditedTodo(null);
-
     };
 
     const handleDragStart = (e: React.DragEvent<HTMLLIElement>, id: string) => {
@@ -111,21 +101,31 @@ const App: React.FC = () => {
         e.preventDefault();
 
         const draggedId = e.dataTransfer.getData('text/plain');
-
-        // Find the index of the dragged todo
         const draggedIndex = todos.findIndex((todo) => todo.id === draggedId);
-
-        // Find the index of the target todo
         const targetIndex = todos.findIndex((todo) => todo.id === targetId);
 
-        // Swap the todos in the array
         const updatedTodos = [...todos];
-        [updatedTodos[draggedIndex], updatedTodos[targetIndex]] = [updatedTodos[targetIndex], updatedTodos[draggedIndex],
+        [updatedTodos[draggedIndex], updatedTodos[targetIndex]] = [
+            updatedTodos[targetIndex],
+            updatedTodos[draggedIndex],
         ];
 
         setTodos(updatedTodos);
+    };
 
-    }
+    const handlePriorityToggle = (id: string) => {
+        setTodos(
+            todos.map((todo) => {
+                if (todo.id === id) {
+                    return {
+                        ...todo,
+                        priority: !todo.priority,
+                    };
+                }
+                return todo;
+            })
+        );
+    };
 
     return (
         <div className="App">
@@ -143,11 +143,13 @@ const App: React.FC = () => {
             </form>
             <ul className="todo-list">
                 {todos.map((todo, index) => (
-                    <li key={todo.id}
+                    <li
+                        key={todo.id}
                         draggable
                         onDragStart={(e) => handleDragStart(e, todo.id)}
                         onDragOver={handleDragOver}
                         onDrop={(e) => handleDrop(e, todo.id)}
+                        className={`${todo.priority ? 'todo-high-priority' : 'todo-low-priority' }`}
                     >
                         {editedTodo && editedTodo.id === todo.id ? (
                             <input
@@ -161,25 +163,32 @@ const App: React.FC = () => {
                                 }
                                 onBlur={() => handleTodoUpdate(editedTodo.id, editedTodo.text)}
                             />
-
                         ) : (
-                        <>
-                         <span
-                            className={`todo-text ${todo.completed ? 'completed' : ''}`}
-                            onClick={() => toggleTodoCompletion(todo.id)}
-                            onDoubleClick={() => handleTodoEdit(todo.id, todo.text)}
-                        >
-                            {todo.text}
-                            </span>
-                        
-                          <FiTrash className="delete-icon" onClick={() => deleteTodo(todo.id)} />
-                        </>
+                            <>
+                                <span
+                                        className={`todo-text ${todo.priority ? 'white' : ''} ${todo.completed ? 'completed' : ''}`}
+                                    onClick={() => toggleTodoCompletion(todo.id)}
+                                    onDoubleClick={() => handleTodoEdit(todo.id, todo.text)}
+                                >
+                                    <p></p>{todo.text}
+                                </span>
+                                    <FiTrash
+                                        className={`delete-icon ${todo.priority ? 'white' : ''}`}
+                                    onClick={() => deleteTodo(todo.id)}
+                                />
+                                <input
+                                    type="checkbox"
+                                    className="todo-priority-checkbox"
+                                    checked={todo.priority}
+                                    onChange={() => handlePriorityToggle(todo.id)}
+                                />
+                            </>
                         )}
-                    </li>       
+                    </li>
                 ))}
             </ul>
         </div>
-    )
-}
+    );
+};
 
 export default App;
