@@ -48,6 +48,11 @@
         border: 3px blue dotted;
     }
 
+.todo-text {
+    flex-grow: 4;
+    text-align: left;
+}
+
 .todo-text.completed {
     text-decoration: line-through;
 }
