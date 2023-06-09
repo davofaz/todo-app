@@ -58,7 +58,7 @@
 
 .todo-list li:hover {
     /* Add styles to highlight the list items on hover */
-    background-color: #dfdfdf;
+    /* background-color: #dfdfdf;*/
     border: 1px grey dashed;
 }
 
@@ -76,6 +76,7 @@
 
 .todo-text.completed {
     text-decoration: line-through;
+    font-weight:500;
 }
 
 .todo-priority-checkbox {
@@ -92,11 +93,15 @@
 }
 
 
-.delete-icon {
+.delete-icon, .priority-icon, .completed-icon {
     cursor: pointer;
     padding: 20px;
 }
 
 .white {
     color: #fff;
+}
+
+.green {
+    color: forestgreen;
 }

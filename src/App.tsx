@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { FiTrash } from 'react-icons/fi';
+import { FiXCircle, FiAlertCircle, FiCheckCircle } from 'react-icons/fi';
 import { v4 as uuidv4 } from 'uuid';
 import './App.css';
 
@@ -174,18 +174,20 @@ const App: React.FC = () => {
                                         onClick={() => toggleTodoCompletion(todo.id)}
                                         onDoubleClick={() => handleTodoEdit(todo.id, todo.text)}
                                     >
-                                        <p></p>{todo.text}
+                                       {todo.text}
                                     </span>
-                                        <FiTrash
+                                        <FiXCircle
                                             className={`delete-icon ${todo.priority ? 'white' : ''}`}
                                         onClick={() => deleteTodo(todo.id)}
-                                    />
-                                    <input
-                                        type="checkbox"
-                                        className="todo-priority-checkbox"
-                                        checked={todo.priority}
-                                        onChange={() => handlePriorityToggle(todo.id)}
-                                    />
+                                        />
+                                        <FiAlertCircle
+                                            className={`priority-icon ${todo.priority ? 'white' : ''}`}
+                                            onClick={() => handlePriorityToggle(todo.id)}
+                                        />
+                                        <FiCheckCircle
+                                            className={`completed-icon ${todo.completed ? 'green' : ''}`}
+                                            onClick={() => toggleTodoCompletion(todo.id)}
+                                        />
                                 </>
                             )}
                         </li>
