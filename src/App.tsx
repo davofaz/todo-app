@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { FiXCircle, FiAlertCircle, FiCheckCircle } from 'react-icons/fi';
 import { v4 as uuidv4 } from 'uuid';
 import './App.css';
+import Instructions from './components/Instructions';
 
 type Todo = {
     id: string;
@@ -152,15 +153,7 @@ const App: React.FC = () => {
             </header>
             <main className="App-main">
                 {todos.length < 1 ? (
-                    <div style={{ textAlign: 'left' }}>
-                        <h2>Instructions</h2>
-                        <ol>
-                            <li>Add some todos</li>
-                            <li>Edit by double clicking/tapping</li>
-                            <li>Drag to change the order</li>
-                            <li>Delete, mark as important and tick when complete using the icons</li>
-                        </ol>
-                    </div>
+                    <Instructions />
                     ) :  (
                     <ul className="todo-list">
                         {todos.map((todo, index) => (
