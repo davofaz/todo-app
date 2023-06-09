@@ -44,6 +44,12 @@ const App: React.FC = () => {
 
     const deleteTodo = (id: string) => {
         setTodos(todos.filter((todo) => todo.id !== id));
+
+        if (todos.length === 1) {
+
+            localStorage.removeItem('todo-list');
+        }
+
     };
 
     const toggleTodoCompletion = (id: string) => {
