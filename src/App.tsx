@@ -151,54 +151,67 @@ const App: React.FC = () => {
                     </form>
             </header>
             <main className="App-main">
-                <ul className="todo-list">
-                    {todos.map((todo, index) => (
-                        <li
-                            key={todo.id}
-                            draggable
-                            onDragStart={(e) => handleDragStart(e, todo.id)}
-                            onDragOver={handleDragOver}
-                            onDrop={(e) => handleDrop(e, todo.id)}
-                            className={`${todo.priority ? 'todo-high-priority' : 'todo-low-priority' }`}
-                        >
-                            {editedTodo && editedTodo.id === todo.id ? (
-                                <input
-                                    type="text"
-                                    value={editedTodo.text}
-                                    onChange={(e) =>
-                                        setEditedTodo({
-                                            ...editedTodo,
-                                            text: e.target.value,
-                                        })
-                                    }
-                                    onBlur={() => handleTodoUpdate(editedTodo.id, editedTodo.text)}
-                                />
-                            ) : (
-                                <>
-                                    <span
-                                            className={`todo-text ${todo.priority ? 'white' : ''} ${todo.completed ? 'completed' : ''}`}
-                                        onClick={() => toggleTodoCompletion(todo.id)}
-                                        onDoubleClick={() => handleTodoEdit(todo.id, todo.text)}
-                                    >
-                                       {todo.text}
-                                    </span>
-                                        <FiXCircle
-                                            className={`delete-icon ${todo.priority ? 'white' : ''}`}
-                                        onClick={() => deleteTodo(todo.id)}
-                                        />
-                                        <FiAlertCircle
-                                            className={`priority-icon ${todo.priority ? 'white' : ''}`}
-                                            onClick={() => handlePriorityToggle(todo.id)}
-                                        />
-                                        <FiCheckCircle
-                                            className={`completed-icon ${todo.completed ? 'green' : ''}`}
+                {todos.length < 1 ? (
+                    <div style={{ textAlign: 'left' }}>
+                        <h2>Instructions</h2>
+                        <ol>
+                            <li>Add some todos</li>
+                            <li>Edit by double clicking/tapping</li>
+                            <li>Drag to change the order</li>
+                            <li>Delete, mark as important and tick when complete using the icons</li>
+                        </ol>
+                    </div>
+                    ) :  (
+                    <ul className="todo-list">
+                        {todos.map((todo, index) => (
+                            <li
+                                key={todo.id}
+                                draggable
+                                onDragStart={(e) => handleDragStart(e, todo.id)}
+                                onDragOver={handleDragOver}
+                                onDrop={(e) => handleDrop(e, todo.id)}
+                                className={`${todo.priority ? 'todo-high-priority' : 'todo-low-priority' }`}
+                            >
+                                {editedTodo && editedTodo.id === todo.id ? (
+                                    <input
+                                        type="text"
+                                        value={editedTodo.text}
+                                        onChange={(e) =>
+                                            setEditedTodo({
+                                                ...editedTodo,
+                                                text: e.target.value,
+                                            })
+                                        }
+                                        onBlur={() => handleTodoUpdate(editedTodo.id, editedTodo.text)}
+                                    />
+                                ) : (
+                                    <>
+                                        <span
+                                                className={`todo-text ${todo.priority ? 'white' : ''} ${todo.completed ? 'completed' : ''}`}
                                             onClick={() => toggleTodoCompletion(todo.id)}
-                                        />
-                                </>
-                            )}
-                        </li>
-                    ))}
-                </ul>
+                                            onDoubleClick={() => handleTodoEdit(todo.id, todo.text)}
+                                        >
+                                           {todo.text}
+                                        </span>
+                                            <FiXCircle
+                                                className={`delete-icon ${todo.priority ? 'white' : ''}`}
+                                            onClick={() => deleteTodo(todo.id)}
+                                            />
+                                            <FiAlertCircle
+                                                className={`priority-icon ${todo.priority ? 'white' : ''}`}
+                                                onClick={() => handlePriorityToggle(todo.id)}
+                                            />
+                                            <FiCheckCircle
+                                                className={`completed-icon ${todo.completed ? 'green' : ''}`}
+                                                onClick={() => toggleTodoCompletion(todo.id)}
+                                            />
+                                    </>
+                                )}
+                            </li>
+                        ))}
+                    </ul>
+                     )
+                }
             </main>
         </div>
     );
