@@ -16,6 +16,14 @@ const App: React.FC = () => {
     const [todos, setTodos] = useState<Todo[]>([]);
     const [newTodo, setNewTodo] = useState('');
     const [editedTodo, setEditedTodo] = useState<Todo | null>(null);
+    const [currentDate, setCurrentDate] = useState('');
+
+    useEffect(() => {
+        const today = new Date();
+        const options: Intl.DateTimeFormatOptions =  { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        setCurrentDate(today.toLocaleDateString(undefined, options));
+    }, []);
+
 
     useEffect(() => {
         const storedTodos = localStorage.getItem('todo-list');
@@ -139,6 +147,7 @@ const App: React.FC = () => {
         <div className="App">
             <header className="App-header">
                 <h1>My Tasks</h1>
+                <p className="header-date">{currentDate}</p>
                 <TaskList todos={todos} />
                 <form onSubmit={handleFormSubmit}>
                     <div className="todo-container">
