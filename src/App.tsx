@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { FiXCircle, FiAlertCircle, FiCheckCircle } from 'react-icons/fi';
 import { v4 as uuidv4 } from 'uuid';
 import './App.css';
+import DateDisplay from './components/DateDisplay';
 import Instructions from './components/Instructions';
 import TaskList from './components/TaskList';
 
@@ -16,6 +17,8 @@ const App: React.FC = () => {
     const [todos, setTodos] = useState<Todo[]>([]);
     const [newTodo, setNewTodo] = useState('');
     const [editedTodo, setEditedTodo] = useState<Todo | null>(null);
+   
+
 
     useEffect(() => {
         const storedTodos = localStorage.getItem('todo-list');
@@ -139,6 +142,7 @@ const App: React.FC = () => {
         <div className="App">
             <header className="App-header">
                 <h1>My Tasks</h1>
+                <DateDisplay />
                 <TaskList todos={todos} />
                 <form onSubmit={handleFormSubmit}>
                     <div className="todo-container">
@@ -181,13 +185,14 @@ const App: React.FC = () => {
                                     />
                                 ) : (
                                     <>
-                                        <span
-                                                className={`todo-text ${todo.priority ? 'white' : ''} ${todo.completed ? 'completed' : ''}`}
+                                        <div
+                                            className={`todo-text ${todo.priority ? 'white' : ''} ${todo.completed ? 'completed' : ''}`}
                                             onClick={() => toggleTodoCompletion(todo.id)}
                                             onDoubleClick={() => handleTodoEdit(todo.id, todo.text)}
                                         >
                                            {todo.text}
-                                        </span>
+                                            </div>
+                                            <div className="todo-icons">
                                             <FiXCircle
                                                 className={`delete-icon ${todo.priority ? 'white' : ''}`}
                                             onClick={() => deleteTodo(todo.id)}
@@ -199,7 +204,8 @@ const App: React.FC = () => {
                                             <FiCheckCircle
                                                 className={`completed-icon ${todo.completed ? 'green' : ''}`}
                                                 onClick={() => toggleTodoCompletion(todo.id)}
-                                            />
+                                                />
+                                            </div>
                                     </>
                                 )}
                             </li>
