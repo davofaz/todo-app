@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { FiXCircle, FiAlertCircle, FiCheckCircle } from 'react-icons/fi';
 import { v4 as uuidv4 } from 'uuid';
 import './App.css';
+import DateDisplay from './components/DateDisplay';
 import Instructions from './components/Instructions';
 import TaskList from './components/TaskList';
 
@@ -16,13 +17,7 @@ const App: React.FC = () => {
     const [todos, setTodos] = useState<Todo[]>([]);
     const [newTodo, setNewTodo] = useState('');
     const [editedTodo, setEditedTodo] = useState<Todo | null>(null);
-    const [currentDate, setCurrentDate] = useState('');
-
-    useEffect(() => {
-        const today = new Date();
-        const options: Intl.DateTimeFormatOptions =  { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-        setCurrentDate(today.toLocaleDateString(undefined, options));
-    }, []);
+   
 
 
     useEffect(() => {
@@ -147,7 +142,7 @@ const App: React.FC = () => {
         <div className="App">
             <header className="App-header">
                 <h1>My Tasks</h1>
-                <p className="header-date">{currentDate}</p>
+                <DateDisplay />
                 <TaskList todos={todos} />
                 <form onSubmit={handleFormSubmit}>
                     <div className="todo-container">
