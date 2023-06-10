@@ -11,7 +11,7 @@
 
 .App-header h1 {
     margin: 0;
-    padding:2em;
+    padding:2em 2em 0 2em;
     color: #fff;
     font-weight:200;
     letter-spacing:3px;
@@ -26,6 +26,15 @@
 
 .App-main {
     padding: 2em;
+}
+
+.task-counter {
+    color: #fff;
+    text-align: left;
+}
+
+.task-counter ul {
+    list-style: none;
 }
 
 .todo-container {

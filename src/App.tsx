@@ -3,6 +3,7 @@ import { FiXCircle, FiAlertCircle, FiCheckCircle } from 'react-icons/fi';
 import { v4 as uuidv4 } from 'uuid';
 import './App.css';
 import Instructions from './components/Instructions';
+import TaskList from './components/TaskList';
 
 type Todo = {
     id: string;
@@ -138,6 +139,7 @@ const App: React.FC = () => {
         <div className="App">
             <header className="App-header">
                 <h1>My Tasks</h1>
+                <TaskList todos={todos} />
                 <form onSubmit={handleFormSubmit}>
                     <div className="todo-container">
                         <input
@@ -149,7 +151,7 @@ const App: React.FC = () => {
                         />
                         <button type="submit">Add</button>
                     </div>
-                    </form>
+                </form>
             </header>
             <main className="App-main">
                 {todos.length < 1 ? (
