@@ -185,13 +185,14 @@ const App: React.FC = () => {
                                     />
                                 ) : (
                                     <>
-                                        <span
-                                                className={`todo-text ${todo.priority ? 'white' : ''} ${todo.completed ? 'completed' : ''}`}
+                                        <div
+                                            className={`todo-text ${todo.priority ? 'white' : ''} ${todo.completed ? 'completed' : ''}`}
                                             onClick={() => toggleTodoCompletion(todo.id)}
                                             onDoubleClick={() => handleTodoEdit(todo.id, todo.text)}
                                         >
                                            {todo.text}
-                                        </span>
+                                            </div>
+                                            <div className="todo-icons">
                                             <FiXCircle
                                                 className={`delete-icon ${todo.priority ? 'white' : ''}`}
                                             onClick={() => deleteTodo(todo.id)}
@@ -203,7 +204,8 @@ const App: React.FC = () => {
                                             <FiCheckCircle
                                                 className={`completed-icon ${todo.completed ? 'green' : ''}`}
                                                 onClick={() => toggleTodoCompletion(todo.id)}
-                                            />
+                                                />
+                                            </div>
                                     </>
                                 )}
                             </li>
