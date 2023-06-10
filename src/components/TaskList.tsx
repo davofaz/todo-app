@@ -10,12 +10,17 @@ interface TaskListProps {
     todos: Todo[];
 }
 
+
+
 const TaskList: React.FC<TaskListProps> = ({ todos }) => {
+
+    const todoCompletedCount = todos.filter((todo) =>  todo.completed === true ).length;
+
     return (
         <div className="task-counter">
             <ul>
                 <li>{`Tasks: ${todos.length}`}</li>
-                <li>Completed:</li>
+                <li>{`Completed: ${todoCompletedCount}`}</li>
             </ul>
         </div>
     );
