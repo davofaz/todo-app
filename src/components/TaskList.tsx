@@ -1,16 +1,5 @@
 import React from 'react';
-
-interface Todo {
-    id: string;
-    text: string;
-    completed: boolean;
-    priority: boolean;
-}
-interface TaskListProps {
-    todos: Todo[];
-}
-
-
+import { Todo, TaskListProps } from './todo';
 
 const TaskList: React.FC<TaskListProps> = ({ todos }) => {
 

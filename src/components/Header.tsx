@@ -1,21 +1,8 @@
 import React from 'react';
 import TaskList from './TaskList';
-import DateDisplay from './DateDisplay'; 
+import DateDisplay from './DateDisplay';
+import { Todo, HeaderProps } from './todo'
 
-interface Todo {
-    id: string;
-    text: string;
-    completed: boolean;
-    priority: boolean;
-
-}
-
-type HeaderProps = {
-    todos: Todo[];
-    handleFormSubmit: (e: React.FormEvent) => void;
-    newTodo: string;
-    setNewTodo: React.Dispatch<React.SetStateAction<string>>;
-}
 
 const Header: React.FC<HeaderProps> = ({
     todos,

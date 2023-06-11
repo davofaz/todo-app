@@ -5,14 +5,8 @@ import './App.css';
 
 import Header from './components/Header';
 import Instructions from './components/Instructions';
+import { Todo } from './components/todo'
 
-
-type Todo = {
-    id: string;
-    text: string;
-    completed: boolean;
-    priority: boolean;
-};
 
 const App: React.FC = () => {
     const [todos, setTodos] = useState<Todo[]>([]);
