@@ -2,16 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { FiXCircle, FiAlertCircle, FiCheckCircle } from 'react-icons/fi';
 import { v4 as uuidv4 } from 'uuid';
 import './App.css';
-import DateDisplay from './components/DateDisplay';
-import Instructions from './components/Instructions';
-import TaskList from './components/TaskList';
 
-type Todo = {
-    id: string;
-    text: string;
-    completed: boolean;
-    priority: boolean;
-};
+import Header from './components/Header';
+import Instructions from './components/Instructions';
+import { Todo } from './components/todo'
+
 
 const App: React.FC = () => {
     const [todos, setTodos] = useState<Todo[]>([]);
@@ -140,23 +135,13 @@ const App: React.FC = () => {
 
     return (
         <div className="App">
-            <header className="App-header">
-                <h1>My Tasks</h1>
-                <DateDisplay />
-                <TaskList todos={todos} />
-                <form onSubmit={handleFormSubmit}>
-                    <div className="todo-container">
-                        <input
-                            type="text"
-                            placeholder="Add a new todo"
-                            value={newTodo}
-                            onChange={(e) => setNewTodo(e.target.value)}
-                            maxLength={112}
-                        />
-                        <button type="submit">Add</button>
-                    </div>
-                </form>
-            </header>
+            <Header
+                todos={todos}
+                handleFormSubmit={handleFormSubmit}
+                newTodo={newTodo}
+                setNewTodo={setNewTodo}
+
+            />
             <main className="App-main">
                 {todos.length < 1 ? (
                     <Instructions />
