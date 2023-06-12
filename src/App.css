@@ -108,6 +108,7 @@
 
 .todo-high-priority {
     background-color: slateblue;
+    border-bottom: 3px solid lightgray;
 
 }
 
