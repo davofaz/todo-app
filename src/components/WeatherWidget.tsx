@@ -8,9 +8,7 @@ const WeatherWidget = () => {
     useEffect(() => {
         const fetchWeatherData = async () => {
             try {
-
                 const apiKey = process.env.REACT_APP_WEATHER_API_KEY; 
-
                 const response = await fetch(
                     `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=location`
                 );
