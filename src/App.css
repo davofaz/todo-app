@@ -11,14 +11,24 @@
 
 .App-header h1 {
     margin: 0;
-    padding:1em 0 0 0;
+    padding:0.5em 0 0 0;
     color: #fff;
     font-weight:200;
     letter-spacing:3px;
     
 }
 
+.header-utils {
+    display:flex;
+    align-items: flex-start;
+    margin: 1.5em 1.5em 0 1.5em;
+}
+
 .header-date {
+    color: #fff;
+}
+
+.weather-widget {
     color: #fff;
 }
 
@@ -35,23 +45,31 @@
 .task-counter {
     color: #fff;
     text-align: left;
+    flex-grow:1;
 }
 
 .task-counter ul {
     list-style: none;
+    padding:0;
+    margin:0;
+}
+
+.weather-widget {
+    text-align: right;
+    flex-grow: 1;
 }
 
 .todo-container {
     display: flex;
     justify-content: center;
-    margin-bottom: 10px;
-    padding-bottom:20px;
+    margin-bottom: 20px;
   
 }
 
     .todo-container input {
-        padding: 5px;
+        padding: 15px;
         margin-right: 5px;
+        width: 57%;
     }
 
     .todo-container button {

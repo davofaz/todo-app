@@ -2,6 +2,7 @@ import React from 'react';
 import TaskList from './TaskList';
 import DateDisplay from './DateDisplay';
 import { Todo, HeaderProps } from './todo'
+import WeatherWidget from './WeatherWidget';
 
 
 const Header: React.FC<HeaderProps> = ({
@@ -17,7 +18,10 @@ const Header: React.FC<HeaderProps> = ({
         <header className="App-header">
             <h1>My Tasks</h1>
             <DateDisplay />
-            <TaskList todos={todos} />
+            <div className="header-utils">
+                <TaskList todos={todos} />
+                <WeatherWidget />
+            </div>
             <form onSubmit={handleFormSubmit}>
                 <div className="todo-container">
                     <input
