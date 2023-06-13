@@ -8,18 +8,22 @@ const WeatherWidget = () => {
     useEffect(() => {
         const fetchWeatherData = async () => {
             try {
-                const apiKey = process.env.REACT_APP_WEATHER_API_KEY; 
-                const response = await fetch(
-                    `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=location`
-                );
-                const data = await response.json();
-                const temp = data && data.current && data.current.temp_c;
-                const desc = data && data.current && data.current.condition.text;
-                const icon = data && data.current && data.current.condition.icon;
+                const apiKey = process.env.REACT_APP_WEATHER_API_KEY;
+                navigator.geolocation.getCurrentPosition(async (posititon) => {
+                    const { latitude, longitude } = posititon.coords;
+                
+                    const response = await fetch(
+                        `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${latitude},${longitude}`
+                    );
+                    const data = await response.json();
+                    const temp = data && data.current && data.current.temp_c;
+                    const desc = data && data.current && data.current.condition.text;
+                    const icon = data && data.current && data.current.condition.icon;
 
                 setTemperature(temp);
                 setDesc(desc);
-                setIcon(icon);
+                    setIcon(icon);
+                });
             } catch (error) {
                 console.error('Error fetching weather data:', error);
             }
