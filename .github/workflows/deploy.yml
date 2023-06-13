@@ -1,0 +1,9 @@
+name: Deploy to GitHub Pages
+    on:
+      push:
+        branches:
+          - gh-pages
+    steps:
+  - name: My first action
+    env:
+      REACT_APP_WEATHER_API_KEY: ${{ secrets.REACT_APP_WEATHER_API_KEY }}
