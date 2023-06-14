@@ -11,7 +11,7 @@ const WeatherWidget = () => {
         const fetchWeatherData = async () => {
             try {
                 const apiKey = process.env.REACT_APP_WEATHER_API_KEY;
-                console.log(apiKey);
+                
                 navigator.geolocation.getCurrentPosition(async (posititon) => {
                     const { latitude, longitude } = posititon.coords;
                 
