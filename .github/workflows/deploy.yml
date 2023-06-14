@@ -24,8 +24,8 @@ jobs:
         run: echo "REACT_APP_WEATHER_API_KEY=${REACT_APP_WEATHER_API_KEY}" >> $GITHUB_ENV
 
       - name: Print Environment Variable
-        run: echo "The value of REACT_APP_WEATHER_API_KEY is: ${{ secrets.REACT_APP_WEATHER_API_KEY }}"
-        
+        run: echo "The value of REACT_APP_WEATHER_API_KEY is ${{ secrets.REACT_APP_WEATHER_API_KEY }}"
+                
       - name: Install dependencies
         run: npm ci
 
