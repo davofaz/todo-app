@@ -11,21 +11,20 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Set Secret
-        uses: actions/secrets@v1
-        with:
-          secret-name: REACT_APP_WEATHER_API_KEY
-          secret-value: ${{ secrets.REACT_APP_WEATHER_API_KEY }}
+        uses: actions/checkout@v2
 
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: 16
+          node-version: 14
 
       - name: Install dependencies
         run: npm ci
+
+      - name: Set Secret
+        env:
+          MY_SECRET: ${{ secrets.REACT_APP_WEATHER_API_KEY }}
+        run: echo "REACT_APP_WEATHER_API_KEY=$REACT_APP_WEATHER_API_KEY" >> $GITHUB_ENV
 
       - name: Build
         run: npm run build
