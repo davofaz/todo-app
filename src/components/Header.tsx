@@ -1,7 +1,7 @@
 import React from 'react';
 import TaskList from './TaskList';
 import DateDisplay from './DateDisplay';
-import { Todo, HeaderProps } from './todo'
+import { HeaderProps } from './todo'
 import WeatherWidget from './WeatherWidget';
 
 

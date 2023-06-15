@@ -4,9 +4,7 @@
 }
 
 .App-header {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.60), rgba(0, 0, 0, 0.60)), url('./img/header-background-image.jpg');
-    background-size: cover;
-    border-bottom: 3px solid slateblue;
+    background-color: #00997B;
 }
 
 .App-header h1 {
