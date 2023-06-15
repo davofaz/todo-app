@@ -2,8 +2,8 @@ import React from 'react';
 
 const Instructions: React.FC = () => {
     return (
-        <div style={{ textAlign: 'left' }}>
-            <h2>Instructions</h2>
+        <div className="app-instructions">
+            <h3>Instructions</h3>
             <ol>
                 <li>Add some tasks</li>
                 <li>Double tap to edit</li>

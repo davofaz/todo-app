@@ -37,10 +37,25 @@
     color: #fff;
 }
 
-.App-main h2 {
+.app-instructions {
+    text-align: left;
+    color: #788381;
+}
+
+    .app-instructions h3 {
         margin: 0;
         color: grey;
         font-weight: 200;
+    }
+
+    .app-instructions ol {
+        padding-left: 20px;
+    }
+
+    .app-instructions li {
+        font-weight: 600;
+        font-size: 0.8em;
+        margin-bottom: 5px;
     }
 
 .App-main {
