@@ -5,13 +5,20 @@ const Instructions: React.FC = () => {
         <div style={{ textAlign: 'left' }}>
             <h2>Instructions</h2>
             <ol>
-                <li>Add some todos</li>
-                <li>Edit by double clicking/tapping</li>
-                <li>Drag to change the order</li>
-                <li>Delete, mark as important and tick when complete using the icons</li>
+                <li>Add some tasks</li>
+                <li>Double tap to edit</li>
+                <li>Single tap when done</li>
+                <li>Drag to change the order</li>                
+                <li>Highlight important</li>
+                <li>Delete and add more</li>
             </ol>
         </div>
     )
 }
 
 export default Instructions;
+
+
+
+
+
