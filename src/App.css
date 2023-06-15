@@ -1,41 +1,66 @@
 .App {
     text-align: center;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.App-header-container {
+    position: sticky;
+    top:0;
 }
 
 .App-header {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.60), rgba(0, 0, 0, 0.60)), url('./img/header-background-image.jpg');
-    background-size: cover;
-    border-bottom: 3px solid slateblue;
-}
-
-.App-header h1 {
-    margin: 0;
-    padding:0.5em 0 0 0;
-    color: #fff;
-    font-weight:200;
-    letter-spacing:3px;
-    
-}
-
-.header-utils {
+    background-color: #00997B;
     display:flex;
-    align-items: flex-start;
-    margin: 1.5em 1.5em 0 1.5em;
+    padding: 20px 20px 0 20px;
+}
+
+.header-title {
+    
+    color: #fff;
+    font-size: 1.1em;
+    text-align: left;
+
+}
+
+.header-left-column {
+    flex-basis: 40%;
+}
+.header-right-column {
+    flex-basis: 60%;
 }
 
 .header-date {
     color: #fff;
+    text-align:right;
+ }
+
+.header-date h3 {
+    padding-bottom: 0;
 }
 
 .weather-widget {
     color: #fff;
 }
 
-.App-main h2 {
+.app-instructions {
+    text-align: left;
+    color: #788381;
+}
+
+    .app-instructions h3 {
         margin: 0;
         color: grey;
         font-weight: 200;
+    }
+
+    .app-instructions ol {
+        padding-left: 20px;
+    }
+
+    .app-instructions li {
+        font-weight: 600;
+        font-size: 0.8em;
+        margin-bottom: 5px;
     }
 
 .App-main {
@@ -45,37 +70,54 @@
 .task-counter {
     color: #fff;
     text-align: left;
-    flex-grow:1;
-    margin-bottom:30px;
+    margin-bottom: 30px;    
+   
 }
 
-.task-counter ul {
-    list-style: none;
-    padding:0;
-    margin:0;
-}
+    .task-counter ul {
+        list-style: none;
+        background-color: #02B491;
+        border-radius: 10px;
+        margin: 0;
+        width:75px; 
+        padding: 10px;
+    }
+
+    .task-counter li:first-child {
+        margin-bottom: 5px;
+    }
 
 .weather-widget {
     text-align: right;
     flex-grow: 1;
 }
 
-.todo-container {
+.todo-entry-container {
     display: flex;
     justify-content: center;
     margin-bottom: 20px;
-  
+    background: #EEEEEE;
+    padding: 3px;
 }
 
-    .todo-container input {
-        padding: 15px;
+    .todo-entry-container input {
+        padding: 20px;
         margin-right: 5px;
         width: 57%;
+        border: 0;
+        background: #EEEEEE;
+        font-size:1em;
     }
 
-    .todo-container button {
+    .todo-entry-container button {
         padding: 5px 10px;
+        border: 0;
     }
+
+.add-icon {
+    font-size :24px;
+    color: dimgrey;
+}
 
 .todo-list {
     list-style-type: none;
@@ -114,6 +156,7 @@
     text-align:right;
     align-content:flex-end;
     width: 45%;
+    font-size: 20px;
 }
 
 .todo-text.completed {
@@ -126,9 +169,8 @@
 }
 
 .todo-high-priority {
-    background-color: slateblue;
+    background-color: #02B491;
     border-bottom: 3px solid lightgray;
-
 }
 
 .todo-low-priority {
@@ -147,4 +189,11 @@
 
 .green {
     color: forestgreen;
+}
+
+/* Fonts */
+
+@font-face {
+    font-family: 'Open Sans';
+    src: url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
 }

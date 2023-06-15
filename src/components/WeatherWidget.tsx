@@ -43,9 +43,9 @@ const WeatherWidget = () => {
         <div className="weather-widget">
             {temperature && (
                 <div>
-                    <div><small>Min: {minTemp} &#8451; | Max: {maxTemp} &#8451;</small></div>
+                    <div><img src={icon} alt="Weather Icon" height="32" /></div>
                     <div>{temperature} &#8451; {desc}</div>
-                    <div><img src={icon} alt="Weather Icon" /></div>
+                    <div><small>Min: {minTemp} &#8451; | Max: {maxTemp} &#8451;</small></div>
                 </div>
              )}
         </div>
