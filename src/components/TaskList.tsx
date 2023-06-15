@@ -8,8 +8,8 @@ const TaskList: React.FC<TaskListProps> = ({ todos }) => {
     return (
         <div className="task-counter">
             <ul>
-                <li>{`Tasks: ${todos.length}`}</li>
-                <li>{`Completed: ${todoCompletedCount}`}</li>
+                <li>{`To Do: ${todos.length}`}</li>
+                <li>{`Done: ${todoCompletedCount}`}</li>
             </ul>
         </div>
     );

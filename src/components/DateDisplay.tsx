@@ -11,7 +11,7 @@ const DateDisplay: React.FC = () => {
 
     return (
         <>
-            <p className="header-date">{currentDate}</p>
+            <h3 className="header-date">{currentDate}</h3>
         </>
 
     )

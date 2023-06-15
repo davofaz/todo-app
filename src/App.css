@@ -1,29 +1,36 @@
 .App {
     text-align: center;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    font-family: 'Open Sans', sans-serif;
 }
 
 .App-header {
     background-color: #00997B;
-}
-
-.App-header h1 {
-    margin: 0;
-    padding:0.5em 0 0 0;
-    color: #fff;
-    font-weight:200;
-    letter-spacing:3px;
-    
-}
-
-.header-utils {
     display:flex;
-    align-items: flex-start;
-    margin: 1.5em 1.5em 0 1.5em;
+    padding: 20px 20px 0 20px;
+}
+
+.header-title {
+    
+    color: #fff;
+    font-size: 1.1em;
+    text-align: left;
+
+}
+
+.header-left-column {
+    flex-basis: 40%;
+}
+.header-right-column {
+    flex-basis: 60%;
 }
 
 .header-date {
     color: #fff;
+    text-align:right;
+ }
+
+.header-date h3 {
+    padding-bottom: 0;
 }
 
 .weather-widget {
@@ -43,15 +50,22 @@
 .task-counter {
     color: #fff;
     text-align: left;
-    flex-grow:1;
-    margin-bottom:30px;
+    margin-bottom: 30px;    
+   
 }
 
-.task-counter ul {
-    list-style: none;
-    padding:0;
-    margin:0;
-}
+    .task-counter ul {
+        list-style: none;
+        background-color: #02B491;
+        border-radius: 10px;
+        margin: 0;
+        width:75px; 
+        padding: 10px;
+    }
+
+    .task-counter li:first-child {
+        margin-bottom: 5px;
+    }
 
 .weather-widget {
     text-align: right;
@@ -145,4 +159,11 @@
 
 .green {
     color: forestgreen;
+}
+
+/* Fonts */
+
+@font-face {
+    font-family: 'Open Sans';
+    src: url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
 }

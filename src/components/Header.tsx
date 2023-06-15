@@ -14,28 +14,33 @@ const Header: React.FC<HeaderProps> = ({
 }) => {
 
     return (
-
-        <header className="App-header">
-            <h1>My Tasks</h1>
-            <DateDisplay />
-            <div className="header-utils">
-                <TaskList todos={todos} />
-                <WeatherWidget />
-            </div>
-            <form onSubmit={handleFormSubmit}>
-                <div className="todo-container">
-                    <input
-                        type="text"
-                        placeholder="Add a new todo"
-                        value={newTodo}
-                        onChange={(e) => setNewTodo(e.target.value)}
-                        maxLength={112}
-                    />
-                    <button type="submit">Add</button>
+        <>
+            <header className="App-header">
+                <div className="header-left-column">
+                    <h1 className="header-title">MY TASKS</h1>
+                    <TaskList todos={todos} />
                 </div>
-            </form>
-        </header>
-
+                <div className="header-right-column">
+                    <WeatherWidget />
+                    <DateDisplay />
+                </div>
+            
+            </header>
+            <div className="add-entry">
+                <form onSubmit={handleFormSubmit}>
+                    <div className="todo-container">
+                        <input
+                            type="text"
+                            placeholder="Add a new todo"
+                            value={newTodo}
+                            onChange={(e) => setNewTodo(e.target.value)}
+                            maxLength={112}
+                        />
+                        <button type="submit">Add</button>
+                    </div>
+                    </form>
+                </div>
+        </>
     )
 }
 
