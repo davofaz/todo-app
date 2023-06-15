@@ -3,18 +3,19 @@ import TaskList from './TaskList';
 import DateDisplay from './DateDisplay';
 import { HeaderProps } from './todo'
 import WeatherWidget from './WeatherWidget';
+import { FiPlusCircle } from 'react-icons/fi'
 
 
 const Header: React.FC<HeaderProps> = ({
     todos,
     handleFormSubmit,
     newTodo,
-    setNewTodo
+    setNewTodo,
 
 }) => {
 
     return (
-        <>
+        <div className="App-header-container">
             <header className="App-header">
                 <div className="header-left-column">
                     <h1 className="header-title">MY TASKS</h1>
@@ -26,21 +27,19 @@ const Header: React.FC<HeaderProps> = ({
                 </div>
             
             </header>
-            <div className="add-entry">
                 <form onSubmit={handleFormSubmit}>
-                    <div className="todo-container">
+                    <div className="todo-entry-container">
                         <input
                             type="text"
                             placeholder="Add a new todo"
                             value={newTodo}
                             onChange={(e) => setNewTodo(e.target.value)}
                             maxLength={112}
-                        />
-                        <button type="submit">Add</button>
+                    />
+                    <button type="submit"><FiPlusCircle className="add-icon" /></button>
                     </div>
-                    </form>
-                </div>
-        </>
+                </form>
+        </div>
     )
 }
 
