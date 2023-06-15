@@ -187,7 +187,7 @@ const App: React.FC = () => {
                                                 onClick={() => handlePriorityToggle(todo.id)}
                                             />
                                             <FiCheckCircle
-                                                className={`completed-icon ${todo.completed ? 'green' : ''}`}
+                                                    className={`completed-icon ${todo.priority ? 'white' : ''} ${todo.completed ? 'green' : ''}`}
                                                 onClick={() => toggleTodoCompletion(todo.id)}
                                                 />
                                             </div>
