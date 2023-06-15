@@ -98,6 +98,7 @@
     margin-bottom: 20px;
     background: #EEEEEE;
     padding: 3px;
+    box-shadow: 0px 0px 10px 0px gray;
 }
 
     .todo-entry-container input {
