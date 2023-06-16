@@ -90,6 +90,7 @@
 .weather-widget {
     text-align: right;
     flex-grow: 1;
+    font-family: 'Open Sans', sans-serif;
 }
 
 .todo-entry-container {
@@ -192,9 +193,3 @@
     color: #0E7B66;
 }
 
-/* Fonts */
-
-@font-face {
-    font-family: 'Open Sans';
-    src: url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
-}
