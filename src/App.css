@@ -193,3 +193,71 @@
     color: #0E7B66;
 }
 
+.group-selector {
+    display: flex;
+    align-items: center;
+    margin-top: 4px;
+}
+
+    .group-selector button {
+        background: none;
+        border: none;
+        padding: 0;
+        cursor: pointer;
+    }
+
+.color-options {
+    display: flex;
+    gap: 4px;
+    margin-top: 4px;
+}
+
+.color-option {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+    .color-option.selected {
+        border: 2px solid white;
+    }
+
+.todo-icons {
+    display: flex;
+    gap: 4px;
+}
+
+    .todo-icons .group-selector {
+        position: relative;
+        display: flex;
+        align-items: center;
+        margin-top: 4px;
+    }
+
+        .todo-icons .group-selector button {
+            background: none;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+        }
+
+        .todo-icons .group-selector .color-options {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            display: flex;
+            gap: 4px;
+            margin-top: 4px;
+        }
+
+        .todo-icons .group-selector .color-option {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+            .todo-icons .group-selector .color-option.selected {
+                border: 1px solid white;
+            }

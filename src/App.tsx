@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { FiXCircle, FiAlertCircle, FiCheckCircle } from 'react-icons/fi';
 import { v4 as uuidv4 } from 'uuid';
 import './App.css';
-
+import GroupSelector from './components/GroupSelector';
 import Header from './components/Header';
 import Instructions from './components/Instructions';
 import { Todo } from './components/todo'
@@ -36,6 +36,9 @@ const App: React.FC = () => {
             text: newTodo,
             completed: false,
             priority: false,
+            groupOpen: false,
+            selectedColor: '',
+            backgroundColor: ''
         };
 
         setTodos((prevTodos) => [...prevTodos, todo]);
@@ -77,6 +80,9 @@ const App: React.FC = () => {
             text: text,
             completed: false,
             priority: false,
+            groupOpen: false,
+            selectedColor: '',
+            backgroundColor: ''
         });
     };
 
@@ -133,6 +139,38 @@ const App: React.FC = () => {
         );
     };
 
+    const handleGroupOpen = (id: string) => {
+        setTodos((prevTodos) =>
+            prevTodos.map((todo) => {
+                if (todo.id === id) {
+                    console.log(`Before: ${todo.groupOpen}`);
+                    const updatedTodo = {
+                        ...todo,
+                        groupOpen: !todo.groupOpen,
+                    };
+                    console.log(`After: ${updatedTodo.groupOpen}`);
+                    return updatedTodo;
+                }
+                return todo;
+            })
+        );
+    };
+
+    const handleColorSelect = (id: string, color: string) => {
+        setTodos((prevTodos) =>
+            prevTodos.map((todo) => {
+                if (todo.id === id) {
+                    return {
+                        ...todo,
+                        selectedColor: color,
+                        backgroundColor: color,
+                    };
+                }
+                return todo;
+            })
+        );
+    };
+
     return (
         <div className="App">
             <Header
@@ -154,7 +192,8 @@ const App: React.FC = () => {
                                 onDragStart={(e) => handleDragStart(e, todo.id)}
                                 onDragOver={handleDragOver}
                                 onDrop={(e) => handleDrop(e, todo.id)}
-                                className={`${todo.priority ? 'todo-high-priority' : 'todo-low-priority' }`}
+                                className={`${todo.priority ? 'todo-high-priority' : 'todo-low-priority'}`}
+                                style={{ backgroundColor: todo.backgroundColor }}
                             >
                                 {editedTodo && editedTodo.id === todo.id ? (
                                     <input
@@ -171,25 +210,42 @@ const App: React.FC = () => {
                                 ) : (
                                     <>
                                         <div
-                                            className={`todo-text ${todo.priority ? 'white' : ''} ${todo.completed ? 'completed' : ''}`}
+                                            className={`todo-text ${todo.priority ? 'white' : ''} ${todo.completed ? 'completed' : ''
+                                                }`}
                                             onClick={() => toggleTodoCompletion(todo.id)}
                                             onDoubleClick={() => handleTodoEdit(todo.id, todo.text)}
                                         >
-                                           {todo.text}
-                                            </div>
+                                            {todo.text}
+                                        </div>
                                             <div className="todo-icons">
-                                            <FiXCircle
-                                                className={`delete-icon ${todo.priority ? 'white' : ''}`}
-                                            onClick={() => deleteTodo(todo.id)}
-                                            />
-                                            <FiAlertCircle
-                                                className={`priority-icon ${todo.priority ? 'white' : ''}`}
-                                                onClick={() => handlePriorityToggle(todo.id)}
-                                            />
-                                            <FiCheckCircle
-                                                    className={`completed-icon ${todo.priority ? 'white' : ''} ${todo.completed ? 'green' : ''}`}
-                                                onClick={() => toggleTodoCompletion(todo.id)}
+                                                <FiXCircle
+                                                    className={`delete-icon ${todo.priority ? 'white' : ''}`}
+                                                    onClick={() => deleteTodo(todo.id)}
                                                 />
+                                                <FiAlertCircle
+                                                    className={`priority-icon ${todo.priority ? 'white' : ''}`}
+                                                    onClick={() => handlePriorityToggle(todo.id)}
+                                                />
+                                                <FiCheckCircle
+                                                    className={`completed-icon ${todo.priority ? 'white' : ''} ${todo.completed ? 'green' : ''}`}
+                                                    onClick={() => toggleTodoCompletion(todo.id)}
+                                                />
+                                                {todo.groupOpen ? (
+                                                    <div className="group-selector">
+                                                        <GroupSelector
+                                                            todoId={todo.id}
+                                                            selectedColor={todo.selectedColor}
+                                                            handleGroupOpen={handleGroupOpen}
+                                                            handleColorSelect={handleColorSelect}
+                                                        />
+                                                    </div>
+                                                ) : (
+                                                    <div className="group-button" onClick={() => handleGroupOpen(todo.id)}>
+                                                        Group
+                                                    </div>
+                                                )}
+
+                                               
                                             </div>
                                     </>
                                 )}
