@@ -1,8 +1,9 @@
-export type Todo = {
+export interface Todo  {
     id: string;
     text: string;
     completed: boolean;
-    priority: boolean;
+    selectedColor: string;
+    backgroundColor: string;
 };
 
 export interface TaskListProps {

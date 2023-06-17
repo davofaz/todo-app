@@ -28,7 +28,7 @@ const WeatherWidget = () => {
                     const data = await response.json();
                     const temp = isCelsius ? data.current.temp_c : data.current.temp_f;
                     const minTemp = isCelsius ? data.forecast.forecastday[0].day.mintemp_c : data.forecast.forecastday[0].day.mintemp_f;
-                    const maxTemp = isCelsius ? data.forecast.forecastday[0].day.mintemp_c : data.forecast.forecastday[0].day.mintemp_f;
+                    const maxTemp = isCelsius ? data.forecast.forecastday[0].day.maxtemp_c : data.forecast.forecastday[0].day.maxtemp_f;
                     const desc = data && data.current && data.current.condition.text;
                     const icon = data && data.current && data.current.condition.icon;
                     

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { FiXCircle, FiAlertCircle, FiCheckCircle } from 'react-icons/fi';
+import { FiXCircle, FiCheckCircle } from 'react-icons/fi';
 import { v4 as uuidv4 } from 'uuid';
 import './App.css';
-
+import GroupSelector from './components/GroupSelector';
 import Header from './components/Header';
 import Instructions from './components/Instructions';
 import { Todo } from './components/todo'
@@ -35,7 +35,8 @@ const App: React.FC = () => {
             id: uuidv4(),
             text: newTodo,
             completed: false,
-            priority: false,
+            selectedColor: '',
+            backgroundColor: ''
         };
 
         setTodos((prevTodos) => [...prevTodos, todo]);
@@ -76,7 +77,8 @@ const App: React.FC = () => {
             id: id,
             text: text,
             completed: false,
-            priority: false,
+            selectedColor: '',
+            backgroundColor: '',
         });
     };
 
@@ -119,13 +121,14 @@ const App: React.FC = () => {
         setTodos(updatedTodos);
     };
 
-    const handlePriorityToggle = (id: string) => {
-        setTodos(
-            todos.map((todo) => {
+    const handleColorSelect = (id: string, color: string) => {
+        setTodos((prevTodos) =>
+            prevTodos.map((todo) => {
                 if (todo.id === id) {
                     return {
                         ...todo,
-                        priority: !todo.priority,
+                        selectedColor: color,
+                        backgroundColor: color,
                     };
                 }
                 return todo;
@@ -153,8 +156,8 @@ const App: React.FC = () => {
                                 draggable
                                 onDragStart={(e) => handleDragStart(e, todo.id)}
                                 onDragOver={handleDragOver}
-                                onDrop={(e) => handleDrop(e, todo.id)}
-                                className={`${todo.priority ? 'todo-high-priority' : 'todo-low-priority' }`}
+                                onDrop={(e) => handleDrop(e, todo.id)}                                
+                                style={{ backgroundColor: todo.backgroundColor }}
                             >
                                 {editedTodo && editedTodo.id === todo.id ? (
                                     <input
@@ -171,26 +174,28 @@ const App: React.FC = () => {
                                 ) : (
                                     <>
                                         <div
-                                            className={`todo-text ${todo.priority ? 'white' : ''} ${todo.completed ? 'completed' : ''}`}
+                                                className={`todo-text ${todo.completed ? 'completed' : ''
+                                                    } ${todo.backgroundColor === 'white' || todo.backgroundColor === '' ? 'black' : 'white'}`}
                                             onClick={() => toggleTodoCompletion(todo.id)}
                                             onDoubleClick={() => handleTodoEdit(todo.id, todo.text)}
                                         >
-                                           {todo.text}
-                                            </div>
-                                            <div className="todo-icons">
+                                            {todo.text}
+                                        </div>
+                                        <div className="todo-icons">
                                             <FiXCircle
-                                                className={`delete-icon ${todo.priority ? 'white' : ''}`}
-                                            onClick={() => deleteTodo(todo.id)}
-                                            />
-                                            <FiAlertCircle
-                                                className={`priority-icon ${todo.priority ? 'white' : ''}`}
-                                                onClick={() => handlePriorityToggle(todo.id)}
-                                            />
+                                                className={`delete-icon`}
+                                                onClick={() => deleteTodo(todo.id)} 
+                                            />                                               
                                             <FiCheckCircle
-                                                    className={`completed-icon ${todo.priority ? 'white' : ''} ${todo.completed ? 'green' : ''}`}
+                                                className={`completed-icon  ${todo.completed ? 'green' : ''}`}
                                                 onClick={() => toggleTodoCompletion(todo.id)}
-                                                />
-                                            </div>
+                                            />                                 
+                                            <GroupSelector
+                                                todoId={todo.id}
+                                                selectedColor={todo.selectedColor}
+                                                handleColorSelect={handleColorSelect}
+                                            />
+                                         </div>
                                     </>
                                 )}
                             </li>
