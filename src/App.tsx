@@ -150,59 +150,62 @@ const App: React.FC = () => {
                     <Instructions />
                     ) :  (
                     <ul className="todo-list">
-                        {todos.map((todo, index) => (
-                            <li
-                                key={todo.id}
-                                draggable
-                                onDragStart={(e) => handleDragStart(e, todo.id)}
-                                onDragOver={handleDragOver}
-                                onDrop={(e) => handleDrop(e, todo.id)}                                
-                                style={{ backgroundColor: todo.backgroundColor }}
-                            >
-                                {editedTodo && editedTodo.id === todo.id ? (
-                                    <input
-                                        type="text"
-                                        value={editedTodo.text}
-                                        onChange={(e) =>
-                                            setEditedTodo({
-                                                ...editedTodo,
-                                                text: e.target.value,
-                                            })
-                                        }
-                                        onBlur={() => handleTodoUpdate(editedTodo.id, editedTodo.text)}
-                                    />
-                                ) : (
-                                    <>
-                                        <div
-                                                className={`todo-text ${todo.completed ? 'completed' : ''
-                                                    } ${todo.backgroundColor === 'white' || todo.backgroundColor === '' ? 'black' : 'white'}`}
-                                            onClick={() => toggleTodoCompletion(todo.id)}
-                                            onDoubleClick={() => handleTodoEdit(todo.id, todo.text)}
-                                        >
-                                            {todo.text}
-                                        </div>
-                                        <div className="todo-icons">
-                                            <FiXCircle
-                                                className={`delete-icon`}
-                                                onClick={() => deleteTodo(todo.id)} 
-                                            />                                               
-                                            <FiCheckCircle
-                                                className={`completed-icon  ${todo.completed ? 'green' : ''}`}
-                                                onClick={() => toggleTodoCompletion(todo.id)}
-                                            />                                 
-                                            <GroupSelector
-                                                todoId={todo.id}
-                                                selectedColor={todo.selectedColor}
-                                                handleColorSelect={handleColorSelect}
+                            {todos.map((todo, index) => {
+                                const isWhiteBackgroundColor = todo.backgroundColor === 'white' || todo.backgroundColor === '';
+                                const textColor = isWhiteBackgroundColor ? 'black' : 'white';
+                                return (
+
+                                    <li
+                                        key={todo.id}
+                                        draggable
+                                        onDragStart={(e) => handleDragStart(e, todo.id)}
+                                        onDragOver={handleDragOver}
+                                        onDrop={(e) => handleDrop(e, todo.id)}
+                                        style={{ backgroundColor: todo.backgroundColor }}
+                                    >
+                                        {editedTodo && editedTodo.id === todo.id ? (
+                                            <input
+                                                type="text"
+                                                value={editedTodo.text}
+                                                onChange={(e) =>
+                                                    setEditedTodo({
+                                                        ...editedTodo,
+                                                        text: e.target.value,
+                                                    })
+                                                }
+                                                onBlur={() => handleTodoUpdate(editedTodo.id, editedTodo.text)}
                                             />
-                                         </div>
-                                    </>
-                                )}
-                            </li>
-                        ))}
+                                        ) : (
+                                            <>
+                                                <div
+                                                    className={`todo-text ${todo.completed ? 'completed' : ''} ${textColor}`}
+                                                    onClick={() => toggleTodoCompletion(todo.id)}
+                                                    onDoubleClick={() => handleTodoEdit(todo.id, todo.text)}
+                                                >
+                                                    {todo.text}
+                                                </div>
+                                                <div className="todo-icons">
+                                                    <FiXCircle
+                                                        className={`delete-icon ${textColor}`}
+                                                        onClick={() => deleteTodo(todo.id)}
+                                                    />
+                                                    <FiCheckCircle
+                                                        className={`completed-icon ${textColor} ${todo.completed ? 'green' : ''}`}
+                                                        onClick={() => toggleTodoCompletion(todo.id)}
+                                                    />
+                                                    <GroupSelector
+                                                        todoId={todo.id}
+                                                        selectedColor={todo.selectedColor}
+                                                        handleColorSelect={handleColorSelect}
+                                                    />
+                                                </div>
+                                            </>
+                                        )}
+                                    </li>
+                                );
+                            })}
                     </ul>
-                     )
-                }
+                  )}
             </main>
         </div>
     );
