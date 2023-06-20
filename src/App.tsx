@@ -136,6 +136,31 @@ const App: React.FC = () => {
         );
     };
 
+    const parseTodoText = (text: string, textColor: string) => {
+        const urlRegex = /(https?:\/\/[^\s]+)/g;
+        const parts = text.split(urlRegex);
+
+        //console.log('Todo Parts:', parts);
+
+        return parts.map((part, index) => {
+            if (part.match(urlRegex)) {
+                //console.log('URL:', part);
+                return (
+                    <a className={`todo-link-button ${textColor}`}
+                        key={index}
+                        href={part}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >{part}                        
+                    </a>
+                );
+            } else {
+                //console.log('Text:', part);
+                return <span key={index}>{part}</span>;
+            }
+        });
+    };
+
     return (
         <div className="App">
             <Header
@@ -153,6 +178,7 @@ const App: React.FC = () => {
                             {todos.map((todo, index) => {
                                 const isWhiteBackgroundColor = todo.backgroundColor === 'white' || todo.backgroundColor === '';
                                 const textColor = isWhiteBackgroundColor ? 'black' : 'white';
+                                
                                 return (
 
                                     <li
@@ -181,8 +207,8 @@ const App: React.FC = () => {
                                                     className={`todo-text ${todo.completed ? 'completed' : ''} ${textColor}`}
                                                     onClick={() => toggleTodoCompletion(todo.id)}
                                                     onDoubleClick={() => handleTodoEdit(todo.id, todo.text)}
-                                                >
-                                                    {todo.text}
+                                                    >
+                                                        {parseTodoText(todo.text, textColor)}
                                                 </div>
                                                 <div className="todo-icons">
                                                     <FiXCircle

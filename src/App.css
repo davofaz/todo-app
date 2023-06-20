@@ -114,6 +114,7 @@
     .todo-entry-container button {
         padding: 5px 10px;
         border: 0;
+        background: #EEEEEE;
     }
 
 .add-icon {
@@ -158,6 +159,15 @@
     white-space: pre-wrap;
 }
 
+.todo-link-button {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.1), 0 3px 10px 0 rgba(0,0,0,0.1);
+    padding: 10px;
+    margin: 0 10px;
+    border-radius: 15px;
+    border: 0;
+    display: inline-block;
+}
+
 .todo-icons {
     text-align:right;
     align-content:flex-end;
@@ -195,7 +205,6 @@
     margin: -5px -5px 0 10px;
     padding: 4px 4px 0 0;
     border-radius: 25px;
-    background-color: #EEEEEE;
 }
 
 .color-option {
