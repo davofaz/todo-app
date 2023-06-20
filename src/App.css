@@ -131,6 +131,7 @@
 
 .todo-list li {
     display: flex;
+    flex-direction: column-reverse;
     justify-content: space-between;
     align-items: flex-start;
     /* Add padding, margin, and other styles for the list items */
@@ -162,15 +163,15 @@
 .todo-link-button {
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.1), 0 3px 10px 0 rgba(0,0,0,0.1);
     padding: 10px;
-    margin: 0 10px;
+    margin: 10px;
     border-radius: 15px;
     border: 0;
     display: inline-block;
 }
 
 .todo-icons {
-    text-align:right;
-    align-content:flex-end;
+    display: flex;
+    align-self:flex-end;
     font-size: 20px;
     flex-basis: 40%;
 }
