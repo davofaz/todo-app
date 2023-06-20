@@ -16,7 +16,7 @@ const GroupSelector: React.FC<GroupSelectorProps> = ({
 
     useEffect(() => {
         // Calculate the darker color
-        const darkenAmount = 0.8; // Adjust this value to control the darkness
+        const darkenAmount = 0.65; // Adjust this value to control the darkness
         const rgbColor = hexToRgb(selectedColor);
 
         if (rgbColor) {
@@ -40,7 +40,7 @@ const GroupSelector: React.FC<GroupSelectorProps> = ({
             : null;
     };
 
-    const colors = ['white', '#00997B', '#C23079', '#A1BADD'];
+    const colors = ['white', '#41ad97', '#c46a97', '#85aadd'];
 
     return (
         <div className="group-selector" style={{ backgroundColor: selectedColor === 'white' ? '#EEEEEE' : darkenedColor, }}>
