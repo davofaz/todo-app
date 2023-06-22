@@ -18,8 +18,7 @@
     "typescript": "^4.9.5",
     "uuid": "^9.0.0",
     "uuidv4": "^6.2.13",
-    "web-vitals": "^2.1.4",
-    "workbox-webpack-plugin": "^6.4.1"
+    "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "react-scripts start",
