@@ -25,6 +25,9 @@ jobs:
 
       - name: Print Environment Variable
         run: echo "The value of REACT_APP_WEATHER_API_KEY is ${{ secrets.REACT_APP_WEATHER_API_KEY }}"
+
+      - name: Clear Yarn cache
+        run: yarn cache clean
                 
       - name: Install dependencies
         run: yarn install
