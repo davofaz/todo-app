@@ -46,5 +46,9 @@
     "gh-pages": "^5.0.0",
     "jest-editor-support": "^31.0.1",
     "react-scripts": "^5.0.1"
-  }
+  },
+  "main": "index.tsx",
+  "repository": "https://github.com/davofaz/todo-app",
+  "author": "davofaz <dfazaldin@gmail.com>",
+  "license": "MIT"
 }
