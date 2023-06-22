@@ -18,7 +18,7 @@ const Header: React.FC<HeaderProps> = ({
         <div className="App-header-container">
             <header className="App-header">
                 <div className="header-left-column">
-                    <h1 className="header-title">MY TASKS</h1>
+                    <h1 className="header-title">MY TASKS </h1>
                     <TaskList todos={todos} />
                 </div>
                 <div className="header-right-column">
