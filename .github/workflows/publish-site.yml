@@ -34,7 +34,7 @@ jobs:
 
       - name: Build
         env:
-          REACT_APP_RECIPE_API_KEY: ${{ secrets.REACT_APP_RECIPE_API_KEY }}
+          REACT_APP_RECIPE_API_KEY: ${{ secrets.REACT_APP_WEATHER_API_KEY }}
         run: yarn build
 
       - name: Deploy to gh-pages
