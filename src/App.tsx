@@ -39,7 +39,7 @@ const App: React.FC = () => {
             backgroundColor: ''
         };
 
-        setTodos((prevTodos) => [...prevTodos, todo]);
+        setTodos((prevTodos) => [todo, ...prevTodos]);
         setNewTodo('');
     };
 
