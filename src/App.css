@@ -138,12 +138,13 @@
     padding: 20px;
     cursor: move;
     transition: background-color 0.3s;
-    border-bottom: 3px solid lightgray;
+    border-bottom: 2px solid white;
 }
 
 .todo-list li:hover {
     /* Add styles to highlight the list items on hover */
-    border: 1px grey dashed;
+    border: 1px white dashed;
+    opacity:0.9;
 }
 
     .todo-list li.drag-over {
