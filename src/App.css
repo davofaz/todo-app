@@ -129,17 +129,18 @@
     margin-top: 0;
 }
 
-.todo-list li {
-    display: flex;
-    flex-direction: column-reverse;
-    justify-content: space-between;
-    align-items: flex-start;
-    /* Add padding, margin, and other styles for the list items */
-    padding: 20px;
-    cursor: move;
-    transition: background-color 0.3s;
-    border-bottom: 2px solid white;
-}
+    .todo-list li {
+        display: flex;
+        flex-direction: column-reverse;
+        justify-content: space-between;
+        align-items: flex-start;
+        /* Add padding, margin, and other styles for the list items */
+        padding: 20px;
+        cursor: move;
+        transition: background-color 0.3s;
+        //border-bottom: 2px solid white;
+        box-shadow: 0px 14px 38px -3px rgba(0,0,0,0.5);
+    }
 
 .todo-list li:hover {
     /* Add styles to highlight the list items on hover */

@@ -40,7 +40,8 @@ const GroupSelector: React.FC<GroupSelectorProps> = ({
             : null;
     };
 
-    const colors = ['white', '#41ad97', '#c46a97', '#85aadd'];
+    //const colors = ['white', '#41ad97', '#c46a97', '#85aadd'];
+    const colors = ['white', '#6dc1b0', '#df83b1', '#89b2eb'];
 
     return (
         <div className="group-selector" style={{ backgroundColor: selectedColor === 'white' ? '#EEEEEE' : darkenedColor, }}>
